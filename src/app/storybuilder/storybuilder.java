@@ -37,7 +37,7 @@ public class storybuilder {
       
       if (!first_time_thru) {
         curr_transition = transitionfinder() ;
-        System.out.println(curr_transition) ;
+        System.out.println(curr_transition + "...") ;
       }
 
       a_word_ = noun.nextLine() ;

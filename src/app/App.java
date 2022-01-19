@@ -25,6 +25,13 @@ public class App {
             System.out.println("\t 1 - StoryBuilder") ;
 
             game = s.nextInt() ;
+            while (game < 0 || game > 1) {
+                System.out.println("enter one of the following numbers") ;
+                System.out.println("\t 0 - TicTacToe") ;
+                System.out.println("\t 1 - StoryBuilder") ;
+    
+                game = s.nextInt() ;
+            }
 
             if (game == 0) { // TICTACTOE
                 System.out.println("TicTacToe Game");
