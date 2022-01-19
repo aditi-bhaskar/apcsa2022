@@ -9,8 +9,9 @@ public class storybuilder {
   String a_word_ ;
   
   public storybuilder() {
-    System.out.println("==HOW TO PLAY==") ;
-    System.out.println("enter 2 nouns [hit 'enter' between the two]" 
+    System.out.println("==========HOW TO PLAY==========") ;
+    System.out.println("================================= "
+                        + " \nenter 2 nouns [hit 'enter' between the two]" 
                         + " and a sentence will appear!"
                         + " \nthe game will magically end when"
                         + " certain conditions are met..."
