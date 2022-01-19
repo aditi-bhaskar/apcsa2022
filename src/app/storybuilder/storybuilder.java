@@ -7,12 +7,18 @@ public class storybuilder {
   Scanner noun ;
   boolean isDone ;
   String a_word_ ;
+  String b_word_ ;
+  
+  String curr_transition = "" ;
+  boolean first_time_thru = true ;
+
   
   public storybuilder() {
     System.out.println("==========HOW TO PLAY==========") ;
     System.out.println("================================= "
                         + " \nenter 2 nouns [hit 'enter' between the two]" 
                         + " and a sentence will appear!"
+                        + " \n keep writing more nouns and the story will grow!"
                         + " \nthe game will magically end when"
                         + " certain conditions are met..."
                         + " \nhave fun!!!") ;
@@ -22,20 +28,42 @@ public class storybuilder {
     noun = new Scanner(System.in) ;
     isDone = false;
     a_word_ = "" ;
+    b_word_ = "" ;
   
   }
 
   public void buildmeastory() {
     while (!isDone) {
       
+      if (!first_time_thru) {
+        curr_transition = transitionfinder() ;
+        System.out.println(curr_transition) ;
+      }
+
       a_word_ = noun.nextLine() ;
+      b_word_ = noun.nextLine() ;
+
+      if(a_word_.equals("") || b_word_.equals("")) {
+        System.out.println("please enter 2 nouns") ;
+        a_word_ = noun.nextLine() ;
+        b_word_ = noun.nextLine() ;
+      }
       
-      System.out.println(a_word_ + " " + verbfinder() 
-                          + " " + noun.nextLine() + " " 
+      if(first_time_thru) {
+        System.out.println(a_word_ + " " + verbfinder() 
+                            + " " + b_word_ + " " 
+                            + locationfinder() + ".\n") ;
+                            first_time_thru = false ;
+      } else if (!first_time_thru) {
+        System.out.println(curr_transition + " " 
+                          + a_word_ + " " + verbfinder() 
+                          + " " + b_word_ + " " 
                           + locationfinder() + ".\n") ;
+      }
+      
       
       if (a_word_.length() >= 5) {
-        if (a_word_.substring(3, 4).equals("c") || a_word_.length() == 7) {
+        if (a_word_.substring(3, 4).equals("c") || a_word_.length() == 7 || a_word_.equals("q")) {
           System.out.println("The End!") ;
           isDone = true ;
         }
@@ -47,7 +75,7 @@ public class storybuilder {
   public String verbfinder() {
    
     int random = (int)(Math.random()*100);
-    int n = 25 ; //number of verbs
+    int n = 28 ; //number of verbs
     
     String[] return_verb_ = new String[n];
     //VERBS    only up to  n-1 bc start at 0
@@ -76,6 +104,10 @@ public class storybuilder {
     return_verb_[22] = "yelled at" ;
     return_verb_[23] = "was a goody goody to" ;
     return_verb_[24] = "was more LOSER than" ;
+    return_verb_[25] = "played the fiddle with" ;
+    return_verb_[26] = "sang with" ;
+    return_verb_[27] = "yawned into the face of" ;
+
 
     //finally, return the "magic" verb
     return return_verb_[(int)(random % n)] ;
@@ -84,7 +116,7 @@ public class storybuilder {
   public String locationfinder() {
 
     int random = (int)(Math.random()*100);
-    int n = 25 ; //number of locations
+    int n = 29 ; //number of locations
     
     String[] return_location_ = new String[n];
 
@@ -114,9 +146,34 @@ public class storybuilder {
     return_location_[22] = "in bed" ;
     return_location_[23] = "on an island" ;
     return_location_[24] = "while watching TV" ;
+    return_location_[25] = "in the mall" ;
+    return_location_[26] = "atop a tree" ;
+    return_location_[27] = "on the stairs" ;
+    return_location_[28] = "behind the curtain" ;
 
     //finally, return the "magic" location
     return return_location_[(int)(random % n)] ;
+  }
+
+  public String transitionfinder() {
+
+    int random = (int)(Math.random()*100) ;
+    int n = 9 ; //number of transitions
+    
+    String[] return_transition_ = new String[n] ;
+
+    return_transition_[0] = "then" ;
+    return_transition_[1] = "on the other hand" ;
+    return_transition_[2] = "therefore" ;
+    return_transition_[3] = "and then" ;
+    return_transition_[4] = "meanwhile" ;
+    return_transition_[5] = "yesterday" ;
+    return_transition_[6] = "later" ;
+    return_transition_[7] = "so" ;
+    return_transition_[8] = "back in the day" ;
+
+    //finally, return the "magic" transition phrase
+    return return_transition_[(int)(random % n)] ;
   }
 
 }
