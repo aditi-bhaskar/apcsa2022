@@ -30,7 +30,9 @@ public class storybuilder {
       
       a_word_ = noun.nextLine() ;
       
-      System.out.println(a_word_ + " " + verbfinder() + " " + noun.nextLine() + ".\n") ;
+      System.out.println(a_word_ + " " + verbfinder() 
+                          + " " + noun.nextLine() + " " 
+                          + locationfinder() + ".\n") ;
       
       if (a_word_.length() >= 5) {
         if (a_word_.substring(3, 4).equals("c") || a_word_.length() == 7) {
@@ -79,6 +81,42 @@ public class storybuilder {
     return return_verb_[(int)(random % n)] ;
   }
 
-  // TODO add a location-finder method which returns random locations to end the sentence with!!!
-  
+  public String locationfinder() {
+
+    int random = (int)(Math.random()*100);
+    int n = 25 ; //number of locations
+    
+    String[] return_location_ = new String[n];
+
+    //LOCATIONS    only up to  n-1 bc start at 0
+    return_location_[0] = "at the beach" ;
+    return_location_[1] = "at school" ;
+    return_location_[2] = "in a coma" ;
+    return_location_[3] = "for five minutes" ;
+    return_location_[4] = "with an amiable disposition" ;
+    return_location_[5] = "in the park" ;
+    return_location_[6] = "in an airplane" ;
+    return_location_[7] = "with their friends" ;
+    return_location_[8] = "before reading a book with a similar theme" ;
+    return_location_[9] = "in a pool" ;
+    return_location_[10] = "in the Netherlands" ;
+    return_location_[11] = "in the kitchen" ;
+    return_location_[12] = "2 hours ago" ;
+    return_location_[13] = "for 60 extraordinary seconds" ;
+    return_location_[14] = "before they were caught by the police" ;
+    return_location_[15] = "then bought a jacket" ;
+    return_location_[16] = "on a couch" ;
+    return_location_[17] = "in the mountains" ;
+    return_location_[18] = "near a river" ;
+    return_location_[19] = "in the backyard" ;
+    return_location_[20] = "on the highway" ;
+    return_location_[21] = "in fields of golden hay" ;
+    return_location_[22] = "in bed" ;
+    return_location_[23] = "on an island" ;
+    return_location_[24] = "while watching TV" ;
+
+    //finally, return the "magic" location
+    return return_location_[(int)(random % n)] ;
+  }
+
 }
