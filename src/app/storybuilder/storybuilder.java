@@ -45,79 +45,40 @@ public class storybuilder {
   public String verbfinder() {
    
     int random = (int)(Math.random()*100);
-    String return_verb_ = "" ;
+    int n = 25 ; //number of verbs
     
-    //use math.random 
-    //have a list of 20 verbs and assign words to a set of math.random outputs
-
-    //VERB IDEAS
-      //0. went to
-      //1. did a
-      //2. ate a tonne of
-      //3. spelled the word
-      //4. cried because of
-      //5. flicked a
-      //6. swam to
-      //7. annoyed
-      //8. was kicked by
-      //9. died because of
-      //10. gave birth to
-      //11. broke a
-      //12. drank with
-      //13. wrote on
-      //14. played with
-      //15. slept on
-      //16. sat on
-      //17. kissed a
-      //18. got married to
-      //19. flew to
-      //20. got a concussion from
-
-    if (random % 20 == 0)
-      return_verb_ = "went to" ;
-    else if (random % 20 == 1) 
-      return_verb_ = "did a" ;
-    else if (random % 20 == 2) 
-      return_verb_ = "ate a tonne of" ;
-    else if (random % 20 == 3) 
-      return_verb_ = "spelled the word" ;
-    else if (random % 20 == 4) 
-      return_verb_ = "cried because of" ;
-    else if (random % 20 == 5) 
-      return_verb_ = "flicked a" ;
-    else if (random % 20 == 6) 
-      return_verb_ = "swam to" ;
-    else if (random % 20 == 7) 
-      return_verb_ = "annoyed" ;
-    else if (random % 20 == 8) 
-      return_verb_ = "was kicked by" ;
-    else if (random % 20 == 9) 
-      return_verb_ = "died because of";
-    else if (random % 20 == 10) 
-      return_verb_ = "gave birth to" ;
-    else if (random % 20 == 11) 
-      return_verb_ = "broke a" ;
-    else if (random % 20 == 12) 
-      return_verb_ = "drank with" ;
-    else if (random % 20 == 13) 
-      return_verb_ = "wrote on" ;
-    else if (random % 20 == 14) 
-      return_verb_ = "played with" ;
-    else if (random % 20 == 15) 
-      return_verb_ = "slept on" ;
-    else if (random % 20 == 16) 
-      return_verb_ = "sat on" ;
-    else if (random % 20 == 17) 
-      return_verb_ = "kissed a" ;
-    else if (random % 20 == 18) 
-      return_verb_ = "got married to" ;
-    else if (random % 20 == 19) 
-      return_verb_ = "flew to" ;
-    else if (random % 20 == 20) 
-      return_verb_ = "got a concussion from" ;
+    String[] return_verb_ = new String[n];
+    //VERBS    only up to  n-1 bc start at 0
+    return_verb_[0] = "went to" ;
+    return_verb_[1] = "did a" ;
+    return_verb_[2] = "ate a tonne of" ;
+    return_verb_[3] = "spelled the word" ;
+    return_verb_[4] = "cried because of" ;
+    return_verb_[5] = "flicked a" ;
+    return_verb_[6] = "swam to" ;
+    return_verb_[7] = "annoyed" ;
+    return_verb_[8] = "was kicked by" ;
+    return_verb_[9] = "died because of" ;
+    return_verb_[10] = "gave birth to" ;
+    return_verb_[11] = "broke a" ;
+    return_verb_[12] = "drank with" ;
+    return_verb_[13] = "wrote on" ;
+    return_verb_[14] = "played with" ;
+    return_verb_[15] = "slept on" ;
+    return_verb_[16] = "sat on" ;
+    return_verb_[17] = "kissed a" ;
+    return_verb_[18] = "got married to" ;
+    return_verb_[19] = "flew to" ;
+    return_verb_[20] = "got a concussion from" ;
+    return_verb_[21] = "beesechurgered" ;
+    return_verb_[22] = "yelled at" ;
+    return_verb_[23] = "was a goody goody to" ;
+    return_verb_[24] = "was more LOSER than" ;
 
     //finally, return the "magic" verb
-    return return_verb_ ;
+    return return_verb_[(int)(random % n)] ;
   }
+
+  // TODO add a location-finder method which returns random locations to end the sentence with!!!
   
 }
