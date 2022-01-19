@@ -1,4 +1,4 @@
-package app;
+package app.tictactoe;
 
 public abstract class player {
     

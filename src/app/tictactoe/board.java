@@ -1,10 +1,10 @@
-package app;
+package app.tictactoe;
 
 public class board {
 
     char tictactoe[];
 
-    board() 
+    public board() 
     {
         tictactoe = new char[] {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
     }

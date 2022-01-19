@@ -1,10 +1,10 @@
-package app;
+package app.tictactoe;
 import java.util.Scanner ;
 import java.util.Random ;
 
 public class computerplayer extends player {
     
-    computerplayer(board b)
+    public computerplayer(board b)
     {
         super(b);
     }

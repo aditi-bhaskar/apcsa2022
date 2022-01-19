@@ -1,8 +1,8 @@
-package app;
+package app.tictactoe;
 
 public class game {
 
-    game(player p1, player p2, board b) {
+    public game(player p1, player p2, board b) {
         p1_ = p1;
         p2_ = p2;
         b_ = b;

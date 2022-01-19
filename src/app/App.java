@@ -1,18 +1,28 @@
 package app;
-import java.util.*
+import java.util.Scanner ;
+
+import app.tictactoe.board;
+import app.tictactoe.computerplayer;
+import app.tictactoe.game;
+import app.tictactoe.humanplayer;
+import app.tictactoe.player;
+
+import app.storybuilder.storybuilder;
 
 public class App {
 
     static board tictactoe = new board();
     public static void main(String[] args) throws Exception {
         
+        System.out.println("\n \n") ;
         Scanner s = new Scanner(System.in) ;
-        int game = -1 ;
-        
-        while (game < 0 && game > 1)  { // change limits as more games are added
-            System.out.println("Which game do you want to play? (enter the number)")
-            System.out.println("\t 0 - TicTacToe")
-            System.out.println("\t 1 - StoryBuilder")
+
+        int game = 0 ;
+
+        while (game >= 0 && game <= 1)  { // change limits as more games are added
+            System.out.println("Which game do you want to play? (enter the number)") ;
+            System.out.println("\t 0 - TicTacToe") ;
+            System.out.println("\t 1 - StoryBuilder") ;
 
             game = s.nextInt() ;
 
@@ -28,12 +38,15 @@ public class App {
 
                 System.out.println(g.playgame()); 
                 
-//                 return;
+                return;
             } 
             else if(game == 1) { // STORYBUILDER
                 System.out.println("StoryBuilder Game");
                 
-//                 return;
+                storybuilder story = new storybuilder();
+                story.buildmeastory() ;
+
+                return;
             }
         
         }

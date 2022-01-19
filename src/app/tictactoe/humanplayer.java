@@ -1,8 +1,10 @@
-package app;
+package app.tictactoe;
+
+import java.util.Scanner;
 
 public class humanplayer extends player {
     
-    humanplayer(board b)
+    public humanplayer(board b)
     {
         super(b);
     }
