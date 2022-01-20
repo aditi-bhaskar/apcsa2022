@@ -158,7 +158,7 @@ public class storybuilder {
   public String transitionfinder() {
 
     int random = (int)(Math.random()*100) ;
-    int n = 9 ; //number of transitions
+    int n = 10 ; //number of transitions
     
     String[] return_transition_ = new String[n] ;
 
@@ -171,6 +171,7 @@ public class storybuilder {
     return_transition_[6] = "later" ;
     return_transition_[7] = "so" ;
     return_transition_[8] = "back in the day" ;
+    return_transition_[9] = "last week" ;
 
     //finally, return the "magic" transition phrase
     return return_transition_[(int)(random % n)] ;
