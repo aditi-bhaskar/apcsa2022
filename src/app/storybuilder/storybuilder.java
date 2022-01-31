@@ -61,22 +61,24 @@ public class storybuilder {
                           + locationfinder() + ".\n") ;
       }
       
-      if (a_word_.equals("secret") || a_word_.equals("42")) {
+      if (a_word_.equals("secret") || a_word_.equals("42") || a_word_.equals("treasure")) {
         System.out.println("You have entered the secret lair!");
         System.out.println("You must answer the three passwords correctly!\n\n") ;
         
         System.out.println("1) print fibonacci's first 7; seperate by single spaces: ") ;
         if (noun.nextLine().equals("1 1 2 3 5 8 13 21")) {
           System.out.println("Congrats; you've passed level 1") ;
-          System.out.println("2) what type of relation are these two primes? 3 and 11") ;
-          if (noun.nextLine().equals("octimus primes")) {
+          
+          System.out.println("2) what type of relation are these two primes? 7 and 11") ;
+          String leveltwo = noun.nextLine() ;
+          if (leveltwo.equals("cousin primes") || leveltwo.equals("cousin")) {
             System.out.println("Congrats; you've passed level 2") ;
-            System.out.println("3) integer multiple of 3; don't type in 0 or 1 and try to be cool") ;
+            
+            System.out.println("3) integer multiple of 3; don't type in 0 or 1 and try to be cool by using negatives") ;
               int treasurethree = noun.nextInt() ;
               if(treasurethree%3 == 0) {
                 System.out.println("Congrats; you've passed level 3.\nyou are in the next...") ;
                 treasureThree(treasurethree);
-                // TODO finish up this function
               }
               else {
                 endStory("treasure", 3) ;
@@ -206,14 +208,23 @@ public class storybuilder {
   }
 
   
+  // TODO: do the breaks need to be in here?
+
   public void endStory(String which) {
-    if (which.equals("regular")) {
-      System.out.println("The End!") ;
-    } else if (which.equals("treasure")) {
-      System.out.println("your story - your quest for the ultimate question - has ended") ;
-    } else {
-      System.out.println("...And so I graciously ended the story") ;
+    switch (which) {
+      case "regular":
+        System.out.println("The End!") ;
+        break ;
+      case "treasure" :
+        System.out.println("Your story - your quest for the ultimate question - has ended") ;
+        break ;
+      case "fish" :
+        System.out.println("\"So long and thanks for all the fish!\" ~Douglas Adams") ;
+      default :
+        System.out.println("...And so I graciously ended the story") ;
+        break ;  
     }
+    System.out.println("\n|||||||||||||||||||||||||||||||||||||||||||||||\n") ;
     isDone = true ;
   }
 
@@ -221,31 +232,42 @@ public class storybuilder {
     switch (which) {
       case "regular":
         System.out.println("The End!") ;
+        break ;
       case "treasure":
         switch (level) {
           case 1: 
             System.out.println("You have failed level 1; good try") ;
+            break ;
           case 2:
             System.out.println("You have failed level 2; good attempt") ;
+            break ;
           case 3:
             System.out.println("You have failed level 3; good game") ;
+            break ;
           default:
             System.out.println("good try") ;
+            break ;
         }
         System.out.println("Your story - your quest for the ultimate question - has ended") ;
+        break ;
       default:
-        System.out.println("...And so I graciously ended the story") ;
+        System.out.println("...And so I graciously end the story") ;
+        break ;
     }
+    System.out.println("\n|||||||||||||||||||||||||||||||||||||||||||||||\n") ;
     isDone = true ;
   }
 
   public void treasureThree(int input) {
-
-    // TODO finish up this function
-    //and then it'll take you to the secret duck page where it'll 
-        // print duck jokes OR h2g2 quotes based on your input to the last 
-        // function (if you put in an odd multiple of 3, then duck jokes; 
-        // even = h2g2)
+    System.out.println("\n|||||||||||||||||||||||||||||||||||||||||||||||\n") ;
+    if (input % 2 == 0) { // multiple of three; even
+      System.out.println("Here are some duck jokes and facts!\nAnatidaephobia: The fear that, somewhere, somehow, there is a duck watching you\nIf your beak hurts, call the ducktor!\nIf a duck can't pay for all its purchases, put it on its bill!") ;
+      endStory("bleh") ;
+    } else { // multiple of three ; odd
+      System.out.println("\"What do you get if you multiply six by nine?\" \"Six by nine. Forty two.\" \"That's it. That's all there is.\" \"I always thought something was fundamentally wrong with the universe\"") ;
+      System.out.println("\"There is an art, or, rather, a knack to flying. The knack lies in learning how to throw yourself at the ground and miss. Pick a nice day and try it. All it requires is simply the ability to throw yourself forward with all your weight, and the willingness not to mind that it's going to hurt. That is, it's going to hurt if you fail to miss the ground. Most people fall to miss the ground, and if they are really trying properly, the likelihood is that they will fail to miss it fairly hard. Clearly, it is the second part, the missing, which presents the difficulties. ... Waft higher and higher. Try a few swoops, gentle ones at first, then drift above the treetops breathing regularly. DO NOT WAVE AT ANYBODY.\" ") ;
+      endStory("fish") ;
+    }
   }
 
 }
