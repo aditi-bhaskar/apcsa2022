@@ -61,11 +61,39 @@ public class storybuilder {
                           + locationfinder() + ".\n") ;
       }
       
+      if (a_word_.equals("secret") || a_word_.equals("42")) {
+        System.out.println("You have entered the secret lair!");
+        System.out.println("You must answer the three passwords correctly!\n\n") ;
+        
+        System.out.println("1) print fibonacci's first 7; seperate by single spaces: ") ;
+        if (noun.nextLine().equals("1 1 2 3 5 8 13 21")) {
+          System.out.println("Congrats; you've passed level 1") ;
+          System.out.println("2) what type of relation are these two primes? 3 and 11") ;
+          if (noun.nextLine().equals("octimus primes")) {
+            System.out.println("Congrats; you've passed level 2") ;
+            System.out.println("3) integer multiple of 3; don't type in 0 or 1 and try to be cool") ;
+              int treasurethree = noun.nextInt() ;
+              if(treasurethree%3 == 0) {
+                System.out.println("Congrats; you've passed level 3.\nyou are in the next...") ;
+                treasureThree(treasurethree);
+                // TODO finish up this function
+              }
+              else {
+                endStory("treasure", 3) ;
+              }
+          }
+          else {
+            endStory("treasure", 2) ;
+          }
+
+        } else {
+          endStory("treasure", 1) ;
+        }
+      }
       
       if (a_word_.length() >= 5) {
         if (a_word_.substring(3, 4).equals("c") || a_word_.length() == 7 || a_word_.equals("q")) {
-          System.out.println("The End!") ;
-          isDone = true ;
+          endStory("regular") ;
         }
       }
       
@@ -175,6 +203,49 @@ public class storybuilder {
 
     //finally, return the "magic" transition phrase
     return return_transition_[(int)(random % n)] ;
+  }
+
+  
+  public void endStory(String which) {
+    if (which.equals("regular")) {
+      System.out.println("The End!") ;
+    } else if (which.equals("treasure")) {
+      System.out.println("your story - your quest for the ultimate question - has ended") ;
+    } else {
+      System.out.println("...And so I graciously ended the story") ;
+    }
+    isDone = true ;
+  }
+
+  public void endStory(String which, int level) {
+    switch (which) {
+      case "regular":
+        System.out.println("The End!") ;
+      case "treasure":
+        switch (level) {
+          case 1: 
+            System.out.println("You have failed level 1; good try") ;
+          case 2:
+            System.out.println("You have failed level 2; good attempt") ;
+          case 3:
+            System.out.println("You have failed level 3; good game") ;
+          default:
+            System.out.println("good try") ;
+        }
+        System.out.println("Your story - your quest for the ultimate question - has ended") ;
+      default:
+        System.out.println("...And so I graciously ended the story") ;
+    }
+    isDone = true ;
+  }
+
+  public void treasureThree(int input) {
+
+    // TODO finish up this function
+    //and then it'll take you to the secret duck page where it'll 
+        // print duck jokes OR h2g2 quotes based on your input to the last 
+        // function (if you put in an odd multiple of 3, then duck jokes; 
+        // even = h2g2)
   }
 
 }
