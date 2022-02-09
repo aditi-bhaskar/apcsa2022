@@ -1,5 +1,6 @@
 package app.storybuilder;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class storybuilder {
@@ -105,111 +106,115 @@ public class storybuilder {
   public String verbfinder() {
    
     int random = (int)(Math.random()*100);
-    int n = 28 ; //number of verbs
     
-    String[] return_verb_ = new String[n];
-    //VERBS    only up to  n-1 bc start at 0
-    return_verb_[0] = "went to" ;
-    return_verb_[1] = "did a" ;
-    return_verb_[2] = "ate a tonne of" ;
-    return_verb_[3] = "spelled the word" ;
-    return_verb_[4] = "cried because of" ;
-    return_verb_[5] = "flicked a" ;
-    return_verb_[6] = "swam to" ;
-    return_verb_[7] = "annoyed" ;
-    return_verb_[8] = "was kicked by" ;
-    return_verb_[9] = "died because of" ;
-    return_verb_[10] = "gave birth to" ;
-    return_verb_[11] = "broke a" ;
-    return_verb_[12] = "drank with" ;
-    return_verb_[13] = "wrote on" ;
-    return_verb_[14] = "played with" ;
-    return_verb_[15] = "slept on" ;
-    return_verb_[16] = "sat on" ;
-    return_verb_[17] = "kissed a" ;
-    return_verb_[18] = "got married to" ;
-    return_verb_[19] = "flew to" ;
-    return_verb_[20] = "got a concussion from" ;
-    return_verb_[21] = "beesechurgered" ;
-    return_verb_[22] = "yelled at" ;
-    return_verb_[23] = "was a goody goody to" ;
-    return_verb_[24] = "was more LOSER than" ;
-    return_verb_[25] = "played the fiddle with" ;
-    return_verb_[26] = "sang with" ;
-    return_verb_[27] = "yawned into the face of" ;
+    /*
+        "The data abstraction must make the program easier to develop (alternatives would
+      be more complex) or easier to maintain (future changes to the size of the list would
+      otherwise require significant modifications to the program code)."
+        // array list is useful here, because i don't have to pre-declare how many 
+        //  verbs I want to add to my "little dictionary." I can simply add. having a seperate
+        //  variable to store size adds about 3 lines of code and makes it more confusing when I
+        //  get the size the array later. furthermore, failing to update that variable when I add
+        // or remove from my list causes errors.
+    */
+    ArrayList<String> return_verb_ = new ArrayList<String>() ;
+
+    return_verb_.add("went to") ;
+    return_verb_.add("did a") ;
+    return_verb_.add("ate a tonne of") ;
+    return_verb_.add("spelled the word") ;
+    return_verb_.add("cried because of") ;
+    return_verb_.add("flicked a") ;
+    return_verb_.add("swam to") ;
+    return_verb_.add("annoyed") ;
+    return_verb_.add("was kicked by") ;
+    return_verb_.add("died because of") ;
+    return_verb_.add("gave birth to") ;
+    return_verb_.add("broke a") ;
+    return_verb_.add("drank with") ;
+    return_verb_.add("wrote on") ;
+    return_verb_.add("played with") ;
+    return_verb_.add("slept on") ;
+    return_verb_.add("sat on") ;
+    return_verb_.add("kissed a") ;
+    return_verb_.add("got married to") ;
+    return_verb_.add("flew to") ;
+    return_verb_.add("got a concussion from") ;
+    return_verb_.add("yelled at") ;
+    return_verb_.add("was a goody goody to") ;
+    return_verb_.add("played the fiddle with") ;
+    return_verb_.add("sang with") ;
+    return_verb_.add("yawned into the face of") ;
 
 
     //finally, return the "magic" verb
-    return return_verb_[(int)(random % n)] ;
+    return return_verb_.get((int)(random % return_verb_.size())) ;
   }
 
   public String locationfinder() {
 
     int random = (int)(Math.random()*100);
-    int n = 29 ; //number of locations
-    
-    String[] return_location_ = new String[n];
+
+    ArrayList<String> return_location_ = new ArrayList<String>() ;
 
     //LOCATIONS    only up to  n-1 bc start at 0
-    return_location_[0] = "at the beach" ;
-    return_location_[1] = "at school" ;
-    return_location_[2] = "in a coma" ;
-    return_location_[3] = "for five minutes" ;
-    return_location_[4] = "with an amiable disposition" ;
-    return_location_[5] = "in the park" ;
-    return_location_[6] = "in an airplane" ;
-    return_location_[7] = "with their friends" ;
-    return_location_[8] = "before reading a book with a similar theme" ;
-    return_location_[9] = "in a pool" ;
-    return_location_[10] = "in the Netherlands" ;
-    return_location_[11] = "in the kitchen" ;
-    return_location_[12] = "2 hours ago" ;
-    return_location_[13] = "for 60 extraordinary seconds" ;
-    return_location_[14] = "before they were caught by the police" ;
-    return_location_[15] = "then bought a jacket" ;
-    return_location_[16] = "on a couch" ;
-    return_location_[17] = "in the mountains" ;
-    return_location_[18] = "near a river" ;
-    return_location_[19] = "in the backyard" ;
-    return_location_[20] = "on the highway" ;
-    return_location_[21] = "in fields of golden hay" ;
-    return_location_[22] = "in bed" ;
-    return_location_[23] = "on an island" ;
-    return_location_[24] = "while watching TV" ;
-    return_location_[25] = "in the mall" ;
-    return_location_[26] = "atop a tree" ;
-    return_location_[27] = "on the stairs" ;
-    return_location_[28] = "behind the curtain" ;
+    return_location_.add("at the beach") ;
+    return_location_.add("at school") ;
+    return_location_.add("in a coma") ;
+    return_location_.add("for five minutes") ;
+    return_location_.add("with an amiable disposition") ;
+    return_location_.add("in the park") ;
+    return_location_.add("in an airplane") ;
+    return_location_.add("with their friends") ;
+    return_location_.add("before reading a book with a similar theme") ;
+    return_location_.add("in a pool") ;
+    return_location_.add("in the Netherlands") ;
+    return_location_.add("in the kitchen") ;
+    return_location_.add("2 hours ago") ;
+    return_location_.add("for 60 extraordinary seconds") ;
+    return_location_.add("before they were caught by the police") ;
+    return_location_.add("then bought a jacket") ;
+    return_location_.add("on a couch") ;
+    return_location_.add("in the mountains") ;
+    return_location_.add("near a river") ;
+    return_location_.add("in the backyard") ;
+    return_location_.add("on the highway") ;
+    return_location_.add("in fields of golden hay") ;
+    return_location_.add("in bed") ;
+    return_location_.add("on an island") ;
+    return_location_.add("while watching TV") ;
+    return_location_.add("in the mall") ;
+    return_location_.add("atop a tree") ;
+    return_location_.add("on the stairs") ;
+    return_location_.add("behind the curtain") ;
 
     //finally, return the "magic" location
-    return return_location_[(int)(random % n)] ;
+    return return_location_.get((int)(random % return_location_.size())) ;
   }
 
   public String transitionfinder() {
 
     int random = (int)(Math.random()*100) ;
-    int n = 10 ; //number of transitions
     
-    String[] return_transition_ = new String[n] ;
+    ArrayList<String> return_transition_ = new ArrayList<String>() ;
 
-    return_transition_[0] = "then" ;
-    return_transition_[1] = "on the other hand" ;
-    return_transition_[2] = "therefore" ;
-    return_transition_[3] = "and then" ;
-    return_transition_[4] = "meanwhile" ;
-    return_transition_[5] = "yesterday" ;
-    return_transition_[6] = "later" ;
-    return_transition_[7] = "so" ;
-    return_transition_[8] = "back in the day" ;
-    return_transition_[9] = "last week" ;
+    return_transition_.add("then") ;
+    return_transition_.add("on the other hand") ;
+    return_transition_.add("therefore") ;
+    return_transition_.add("and then") ;
+    return_transition_.add("meanwhile") ;
+    return_transition_.add("yesterday") ;
+    return_transition_.add("later") ;
+    return_transition_.add("so") ;
+    return_transition_.add("back in the day") ;
+    return_transition_.add("last week") ;
 
     //finally, return the "magic" transition phrase
-    return return_transition_[(int)(random % n)] ;
+    return return_transition_.get((int)(random % return_transition_.size())) ;
+
   }
 
-  
-  // TODO: do the breaks need to be in here?
-
+  // function overloading - pass in different parameters...
   public void endStory(String which) {
     switch (which) {
       case "regular":
@@ -260,7 +265,7 @@ public class storybuilder {
 
   public void treasureThree(int input) {
     System.out.println("\n|||||||||||||||||||||||||||||||||||||||||||||||\n") ;
-    if (input % 2 == 0) { // multiple of three; even
+    if (input % 2 == 0) { // multiple of three ; even
       System.out.println("Here are some duck jokes and facts!\nAnatidaephobia: The fear that, somewhere, somehow, there is a duck watching you\nIf your beak hurts, call the ducktor!\nIf a duck can't pay for all its purchases, put it on its bill!") ;
       endStory("bleh") ;
     } else { // multiple of three ; odd
