@@ -3,9 +3,18 @@ package app.storybuilder;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// Storybuilder.
+// Because I like to write
+// and I like to write what is, essentially, nonsense
+// and I like to re-read that nonsense,
+// edit it,
+// and make it all the more nonsensical.
+// So here I write a class to build you your own nonsensical stories
+// and hopefully you'll continue the story in your free time!
+
 public class storybuilder {
   
-  Scanner noun ;
+  Scanner input_ ;
   boolean isDone ;
   String a_word_ ;
   String b_word_ ;
@@ -13,8 +22,7 @@ public class storybuilder {
   String curr_transition = "" ;
   boolean first_time_thru = true ;
 
-  
-  public storybuilder() {
+  public storybuilder(Scanner input) {
     System.out.println("==========HOW TO PLAY==========") ;
     System.out.println("================================= "
                         + " \nenter 2 nouns [hit 'enter' between the two]" 
@@ -26,7 +34,7 @@ public class storybuilder {
 
     System.out.print("\n ||||||||||||| \nOnce upon a time... \n") ;
     
-    noun = new Scanner(System.in) ;
+    input_ = input ;
     isDone = false;
     a_word_ = "" ;
     b_word_ = "" ;
@@ -51,23 +59,26 @@ public class storybuilder {
         System.out.println(curr_transition + "...") ;
       }
 
-      a_word_ = noun.nextLine() ;
-      b_word_ = noun.nextLine() ;
+      a_word_ = input_.nextLine() ;
+      b_word_ = input_.nextLine() ;
 
       /* Instructions for output (tactile, audible, visual, or textual) based on input and
           program functionality
       */
       if(a_word_.equals("") || b_word_.equals("")) {
         System.out.println("please enter 2 nouns") ;
-        a_word_ = noun.nextLine() ;
-        b_word_ = noun.nextLine() ;
+        a_word_ = input_.nextLine() ;
+        b_word_ = input_.nextLine() ;
       }
       
-      if(first_time_thru) {
+      if (a_word_ == "object" && b_word_ == "class") {
+        System.out.println("An object is an instance of a class") ;
+        first_time_thru = false ;
+      } else if(first_time_thru) {
         System.out.println(a_word_ + " " + verbfinder() 
                             + " " + b_word_ + " " 
                             + locationfinder() + ".\n") ;
-                            first_time_thru = false ;
+        first_time_thru = false ;
       } else if (!first_time_thru) {
         System.out.println(curr_transition + " " 
                           + a_word_ + " " + verbfinder() 
@@ -80,17 +91,17 @@ public class storybuilder {
         System.out.println("You must answer the three passwords correctly!\n\n") ;
         
         System.out.println("1) print fibonacci's first 7 (from 0); seperate by single spaces: ") ;
-        String levelone = noun.nextLine() ;
+        String levelone = input_.nextLine() ;
         if (levelone.equals("0 1 1 2 3 5 8 13") || levelone.equals("0 1 1 2 3 5 8 13 ")) {
           System.out.println("Congrats; you've passed level 1") ;
           
           System.out.println("2) what type of relation are these two primes? 7 and 11") ;
-          String leveltwo = noun.nextLine() ;
+          String leveltwo = input_.nextLine() ;
           if (leveltwo.equals("cousin primes") || leveltwo.equals("cousin")) {
             System.out.println("Congrats; you've passed level 2") ;
             
             System.out.println("3) integer multiple of 3; don't type in 0 or 1 and try to be cool by using negatives") ;
-              int treasurethree = noun.nextInt() ;
+              int treasurethree = input_.nextInt() ;
               if(treasurethree%3 == 0) {
                 System.out.println("Congrats; you've passed level 3.\nyou are in the next...") ;
                 treasureThree(treasurethree);
@@ -160,6 +171,7 @@ public class storybuilder {
     return_verb_.add("played the fiddle with") ;
     return_verb_.add("sang with") ;
     return_verb_.add("yawned into the face of") ;
+    return_verb_.add("hitchhiked to") ;
     // Thanks to my younger sister for her innovative verbs. I could only think of 10 on my own :)
 
     //finally, return the "magic" verb
@@ -202,6 +214,7 @@ public class storybuilder {
     return_location_.add("atop a tree") ;
     return_location_.add("on the stairs") ;
     return_location_.add("behind the curtain") ;
+    return_location_.add("while petting a duck") ;
 
     //finally, return the "magic" location
     return return_location_.get((int)(random % return_location_.size())) ;

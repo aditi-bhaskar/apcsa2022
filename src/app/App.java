@@ -36,7 +36,7 @@ public class App {
             } 
             if(game == 1) { // STORYBUILDER
                 System.out.println("StoryBuilder Game");
-                storybuilder story = new storybuilder();
+                storybuilder story = new storybuilder(s);
                 
                 /* "Calls to your student-developed procedure" 
                 */
