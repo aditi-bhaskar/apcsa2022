@@ -14,15 +14,13 @@ import java.util.Scanner;
 
 public class storybuilder {
   
-  Scanner input_ ;
   boolean isDone ;
-  String a_word_ ;
-  String b_word_ ;
   
-  String curr_transition = "" ;
-  boolean first_time_thru = true ;
+  String curr_transition ;
+  boolean first_time_thru ;
 
   public storybuilder(Scanner input) {
+    
     System.out.println("==========HOW TO PLAY==========") ;
     System.out.println("================================= "
                         + " \nenter 2 nouns [hit 'enter' between the two]" 
@@ -34,11 +32,20 @@ public class storybuilder {
 
     System.out.print("\n ||||||||||||| \nOnce upon a time... \n") ;
     
-    input_ = input ;
+    // setting globals
     isDone = false;
-    a_word_ = "" ;
-    b_word_ = "" ;
-  
+    curr_transition = "" ;
+    first_time_thru = true ;
+
+
+    /* "Calls to your student-developed procedure" 
+    */
+    while (!isDone) {
+      //TODO: the extra input taken happens somewhere here :(
+      System.out.println( buildmeastory( input,
+                                        (String)input.nextLine(), 
+                                        (String)input.nextLine()) ) ; 
+    }
   }
 
   /* "At least one procedure that contributes to the program’s intended purpose,
@@ -47,89 +54,100 @@ public class storybuilder {
         ◆ the return type (if necessary)
         ◆ one or more parameters "
   */
+  public String buildmeastory(Scanner input, String a_word, String b_word) {
+    
+    String ret = "" ;
+    /* "An algorithm that includes sequencing, selection, and iteration that is in the
+          body of the selected procedure "
+    */
 
-  public void buildmeastory() {
-    while (!isDone) {
-      
-      /* "An algorithm that includes sequencing, selection, and iteration that is in the
-            body of the selected procedure "
-      */
-      if (!first_time_thru) {
-        curr_transition = transitionfinder() ;
-        System.out.println(curr_transition + "...") ;
-      }
-
-      a_word_ = input_.nextLine() ;
-      b_word_ = input_.nextLine() ;
-
-      /* Instructions for output (tactile, audible, visual, or textual) based on input and
-          program functionality
-      */
-      if(a_word_.equals("") || b_word_.equals("")) {
-        System.out.println("please enter 2 nouns") ;
-        a_word_ = input_.nextLine() ;
-        b_word_ = input_.nextLine() ;
-      }
-      
-      if (a_word_ == "object" && b_word_ == "class") {
-        System.out.println("An object is an instance of a class") ;
-        first_time_thru = false ;
-      } else if(first_time_thru) {
-        System.out.println(a_word_ + " " + verbfinder() 
-                            + " " + b_word_ + " " 
-                            + locationfinder() + ".\n") ;
-        first_time_thru = false ;
-      } else if (!first_time_thru) {
-        System.out.println(curr_transition + " " 
-                          + a_word_ + " " + verbfinder() 
-                          + " " + b_word_ + " " 
-                          + locationfinder() + ".\n") ;
-      }
-      
-      if (a_word_.equals("secret") || a_word_.equals("42") || a_word_.equals("treasure")) {
-        System.out.println("You have entered the secret lair!");
-        System.out.println("You must answer the three passwords correctly!\n\n") ;
-        
-        System.out.println("1) print fibonacci's first 7 (from 0); seperate by single spaces: ") ;
-        String levelone = input_.nextLine() ;
-        if (levelone.equals("0 1 1 2 3 5 8 13") || levelone.equals("0 1 1 2 3 5 8 13 ")) {
-          System.out.println("Congrats; you've passed level 1") ;
-          
-          System.out.println("2) what type of relation are these two primes? 7 and 11") ;
-          String leveltwo = input_.nextLine() ;
-          if (leveltwo.equals("cousin primes") || leveltwo.equals("cousin")) {
-            System.out.println("Congrats; you've passed level 2") ;
-            
-            System.out.println("3) integer multiple of 3; don't type in 0 or 1 and try to be cool by using negatives") ;
-              int treasurethree = input_.nextInt() ;
-              if(treasurethree%3 == 0) {
-                System.out.println("Congrats; you've passed level 3.\nyou are in the next...") ;
-                treasureThree(treasurethree);
-              }
-              else {
-                endStory("treasure", 3) ;
-              }
-          }
-          else {
-            endStory("treasure", 2) ;
-          }
-
-        } else {
-          endStory("treasure", 1) ;
-        }
-      }
-      
-      if (a_word_.length() >= 5) {
-        if (a_word_.substring(3, 4).equals("c") || a_word_.length() == 7 || a_word_.contains("q")) {
-          endStory("regular") ;
-        }
-      }
-      
+    /* Instructions for output (tactile, audible, visual, or textual) based on input and
+        program functionality
+    */
+    if(a_word.equals("") || b_word.equals("")) {
+      System.out.println("please enter 2 nouns") ;
+      a_word = input.nextLine() ;
+      b_word = input.nextLine() ;
     }
+    
+    if (a_word == "object" && b_word == "class") {
+      ret += "An object is an instance of a class" + ".\n";
+      first_time_thru = false ;
+
+    } 
+    // TODO: this throws an index out of bounds exception. deal with it!
+    else if (a_word.substring(0, 1).equals(b_word.substring(0, 1))) {
+      ret += a_word + " " ;
+      ret += verbfinder(1, a_word.substring(0, 1)) + " ";
+      ret += b_word + " " ;
+      ret += locationfinder() ;
+
+      first_time_thru = false ;
+    }
+    else if(first_time_thru) {
+      ret += a_word + " " ;
+      ret += verbfinder(0, "")  + " " ;
+      ret += b_word + " " ;
+      ret += locationfinder() + ".\n" ;
+
+      first_time_thru = false ;
+
+    } 
+    else if (!first_time_thru) {
+      ret += curr_transition + " "  ;
+      ret += a_word + " " + verbfinder(0, "") ;
+      ret += " " + b_word ;
+      ret += " " + locationfinder() + ".\n" ;
+
+    }
+    
+    if (a_word.equals("secret") || a_word.equals("42") || a_word.equals("treasure")) {
+      System.out.println("You have entered the secret lair!");
+      System.out.println("You must answer the three passwords correctly!\n\n") ;
+      
+      System.out.println("1) print fibonacci's first 7 (from 0); seperate by single spaces: ") ;
+      String levelone = input.nextLine() ;
+      if (levelone.equals("0 1 1 2 3 5 8 13") || levelone.equals("0 1 1 2 3 5 8 13 ")) {
+        System.out.println("Congrats; you've passed level 1") ;
+        
+        System.out.println("2) what type of relation are these two primes? 7 and 11") ;
+        String leveltwo = input.nextLine() ;
+        if (leveltwo.equals("cousin primes") || leveltwo.equals("cousin")) {
+          System.out.println("Congrats; you've passed level 2") ;
+          
+          System.out.println("3) integer multiple of 3; don't type in 0 or 1 and try to be cool by using negatives") ;
+            int treasurethree = input.nextInt() ;
+            if(treasurethree%3 == 0) {
+              System.out.println("Congrats; you've passed level 3.\nyou are in the next...") ;
+              treasureThree(treasurethree);
+            }
+            else {
+              endStory("treasure", 3) ;
+            }
+        }
+        else {
+          endStory("treasure", 2) ;
+        }
+
+      } else {
+        endStory("treasure", 1) ;
+      }
+    }
+    
+    if (a_word.length() >= 5) {
+      if (a_word.substring(3, 4).equals("c") || a_word.length() == 7 || a_word.contains("q")) {
+        endStory("regular") ;
+      }
+    }
+      
+    return ret ;
   }
   
-  public String verbfinder() {
+  // \param which says whether you want alphabetized (1) or not (0)
+  // \param start says the start letter
+  public String verbfinder(int which, String start) {
    
+    String ret = "" ;
     int random = (int)(Math.random()*100);
     
     /*
@@ -144,6 +162,7 @@ public class storybuilder {
     */
     ArrayList<String> return_verb_ = new ArrayList<String>() ;
 
+    // TODO - add verbs that start with every letter in the alphabet!
     //VERBS
     return_verb_.add("went to") ;
     return_verb_.add("did a") ;
@@ -174,8 +193,28 @@ public class storybuilder {
     return_verb_.add("hitchhiked to") ;
     // Thanks to my younger sister for her innovative verbs. I could only think of 10 on my own :)
 
+    // TODO - get this part to work!
+    if (which == 0) {
+      ret += return_verb_.get((int)(random % return_verb_.size())) ;
+    }
+    else { // if (which == 1)
+      ArrayList<String> alliterating = new ArrayList<String>() ;
+      // find && store the "alliterating" verbs in a new array. 
+      for (int i = 0; i < return_verb_.size(); i++) {
+        if (return_verb_.get(i).substring(0, 1).equals("start")) {
+          alliterating.add(return_verb_.get(i)) ;
+        }
+      }
+      // find a random alliterating verb (in the case there were multiple)
+      if (alliterating.size() == 0) { // there were NO alliterating verbs
+        ret += return_verb_.get((int)(random % return_verb_.size())) ;
+      } else { // there WERE some alliterating verbs
+        ret += alliterating.get((int)(random % alliterating.size())) ;
+      }
+    }
+
     //finally, return the "magic" verb
-    return return_verb_.get((int)(random % return_verb_.size())) ;
+    return ret ;
   }
 
   public String locationfinder() {
@@ -296,12 +335,29 @@ public class storybuilder {
     System.out.println("\n|||||||||||||||||||||||||||||||||||||||||||||||\n") ;
     if (input % 2 == 0) { // multiple of three ; even
       // Thanks to ducks for being such interesting creatures.
-      System.out.println("Here are some duck jokes and facts!\nAnatidaephobia: The fear that, somewhere, somehow, there is a duck watching you\nIf your beak hurts, call the ducktor!\nIf a duck can't pay for all its purchases, put it on its bill!") ;
+      System.out.println("Here are some duck jokes and facts!"+
+                          "\nAnatidaephobia: The fear that, somewhere, somehow, there is a duck"+
+                          " watching you\nIf your beak hurts, call the ducktor!\nIf a duck can't"+
+                          " pay for all its purchases, put it on its bill!") ;
       endStory("bleh") ;
-    } else { // multiple of three ; odd
+    } 
+    else { // multiple of three ; odd
       // Thanks to Douglas Adams for writing the Hitchhikers' series, because it's great.
-      System.out.println("\n\"What do you get if you multiply six by nine?\" \n\"Six by nine. Forty two.\" \n\"That's it. That's all there is.\" \n\"I always thought something was fundamentally wrong with the universe\"") ;
-      System.out.println("\n\"There is an art, or, rather, a knack to flying. The knack lies in learning how to throw yourself at the ground and miss. Pick a nice day and try it. All it requires is simply the ability to throw yourself forward with all your weight, and the willingness not to mind that it's going to hurt. That is, it's going to hurt if you fail to miss the ground. Most people fall to miss the ground, and if they are really trying properly, the likelihood is that they will fail to miss it fairly hard. Clearly, it is the second part, the missing, which presents the difficulties. ... Waft higher and higher. Try a few swoops, gentle ones at first, then drift above the treetops breathing regularly. DO NOT WAVE AT ANYBODY.\" ") ;
+      System.out.println("\n\"What do you get if you multiply six by nine?\"" +
+                          "\n\"Six by nine. Forty two.\""+
+                          " \n\"That's it. That's all there is.\""+
+                          " \n\"I always thought something was fundamentally wrong with the universe\"") ;
+      System.out.println("\n\"There is an art, or, rather, a knack to flying." + 
+                          " The knack lies in learning how to throw yourself at the ground and miss." +
+                          " Pick a nice day and try it." +
+                          " All it requires is simply the ability to throw yourself forward with all" +
+                          " your weight, and the willingness not to mind that it's going to hurt." +
+                          " That is, it's going to hurt if you fail to miss the ground." + 
+                          " Most people fall to miss the ground, and if they are really trying properly," +
+                          " the likelihood is that they will fail to miss it fairly hard." +
+                          " Clearly, it is the second part, the missing, which presents the difficulties." + 
+                          " ... Waft higher and higher. Try a few swoops, gentle ones at first, then" + 
+                          " drift above the treetops breathing regularly. DO NOT WAVE AT ANYBODY.\" ") ;
       endStory("fish") ;
     }
   }
