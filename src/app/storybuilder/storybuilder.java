@@ -86,17 +86,7 @@ public class storybuilder {
       first_time_thru = false ;
 
     } 
-    // TODO: this throws an index out of bounds exception. deal with it!
-    //  this shouldn't throw an error bc we already check whether the word is 
-    //    empty or not...
-    else if (a_word.substring(0, 1).equals(b_word.substring(0, 1))) {
-      ret += a_word + " " ;
-      ret += verbfinder(1, a_word.substring(0, 1)) + " ";
-      ret += b_word + " " ;
-      ret += locationfinder() ;
-
-      first_time_thru = false ;
-    }
+    // first time thru case
     else if(first_time_thru) {
       ret += a_word + " " ;
       ret += verbfinder(0, "")  + " " ;
@@ -106,12 +96,24 @@ public class storybuilder {
       first_time_thru = false ;
 
     } 
+    // TODO: this throws an index out of bounds exception. deal with it!
+    //  this shouldn't throw an error bc we already check whether the word is 
+    //    empty or not...
+    // alliterating case
+    else if (a_word.substring(0, 1).equals(b_word.substring(0, 1))) {
+      ret += a_word + " " ;
+      ret += verbfinder(1, a_word.substring(0, 1)) + " ";
+      ret += b_word + " " ;
+      ret += locationfinder() ;
+
+      first_time_thru = false ;
+    }
+    // regular path
     else {// (!first_time_thru) 
       ret += curr_transition + " "  ;
       ret += a_word + " " + verbfinder(0, "") ;
       ret += " " + b_word ;
       ret += " " + locationfinder() + ".\n" ;
-
     }
     
     if (a_word.equals("secret") || a_word.equals("42") || a_word.equals("treasure")) {
@@ -176,7 +178,7 @@ public class storybuilder {
     // or remove from my list causes errors.
     ArrayList<String> return_verb_ = new ArrayList<String>() ;
 
-    // TODO - add verbs that start with every letter in the alphabet! // at "g"
+    // TODO - add verbs that start with every letter in the alphabet! // at "i"
     //VERBS
     return_verb_.add("went to") ;
     return_verb_.add("did a") ;
@@ -207,24 +209,44 @@ public class storybuilder {
     return_verb_.add("hitchhiked to") ;
     return_verb_.add("bounced off") ;
     return_verb_.add("etched a") ;
+    return_verb_.add("incited") ;
+    return_verb_.add("jumped on") ;
+    return_verb_.add("listed all the flaws of") ;
+    return_verb_.add("magically appeared in front of") ;
+    return_verb_.add("nodded along to") ;
+    return_verb_.add("opted out of kayaking with") ;
+    return_verb_.add("palavared with") ;
+    return_verb_.add("quit") ;
+    return_verb_.add("ran to") ;
+    return_verb_.add("tricked") ;
+    return_verb_.add("undoubtedly disliked") ;
+    return_verb_.add("videoed") ;
+    return_verb_.add("washed their car with") ;
+    return_verb_.add("x'ed out the name of") ;
+    return_verb_.add("zzzz'ed") ;
+
     // Thanks to my younger sister for her innovative verbs. I could only think of 10 on my own :)
 
-    // TODO - get this part to work!
+    // aliteration (or, no alliteration) logic!
+
     if (which == 0) {
       ret += return_verb_.get((int)(random % return_verb_.size())) ;
     }
-    else { // if (which == 1)
+    else { // if (which == 1), we want to alliterate!
       ArrayList<String> alliterating = new ArrayList<String>() ;
+      
       // find && store the "alliterating" verbs in a new array. 
       for (int i = 0; i < return_verb_.size(); i++) {
-        if (return_verb_.get(i).substring(0, 1).equals("start")) {
+        if (return_verb_.get(i).substring(0, 1).equals(start)) {
           alliterating.add(return_verb_.get(i)) ;
         }
       }
+
       // find a random alliterating verb (in the case there were multiple)
       if (alliterating.size() == 0) { // there were NO alliterating verbs
         ret += return_verb_.get((int)(random % return_verb_.size())) ;
-      } else { // there WERE some alliterating verbs
+      } 
+      else { // there WERE some alliterating verbs
         ret += alliterating.get((int)(random % alliterating.size())) ;
       }
     }
