@@ -30,21 +30,27 @@ public class storybuilder {
                         + " certain conditions are met..."
                         + " \nhave fun!!!") ;
 
-    System.out.print("\n ||||||||||||| \nOnce upon a time... \n") ;
+    System.out.print("\n ||||||||||||| \nOnce upon a time... \n\n") ;
     
     // setting globals
     isDone = false;
     curr_transition = "" ;
     first_time_thru = true ;
 
+    String first_input ;
+    String second_input ;
+    
+    // to consume remaining line, since nextInt() was prev method called 
+    //  (in App.java) and it causes an error...
+    input.nextLine() ;
 
     /* "Calls to your student-developed procedure" 
     */
     while (!isDone) {
-      //TODO: the extra input taken happens somewhere here :(
-      System.out.println( buildmeastory( input,
-                                        (String)input.nextLine(), 
-                                        (String)input.nextLine()) ) ; 
+      first_input = input.nextLine() ;
+      second_input = input.nextLine() ;
+
+      System.out.println(buildmeastory(input, first_input, second_input)); 
     }
   }
 
@@ -64,6 +70,7 @@ public class storybuilder {
     /* Instructions for output (tactile, audible, visual, or textual) based on input and
         program functionality
     */
+
     if(a_word.equals("") || b_word.equals("")) {
       System.out.println("please enter 2 nouns") ;
       a_word = input.nextLine() ;
@@ -93,7 +100,7 @@ public class storybuilder {
       first_time_thru = false ;
 
     } 
-    else if (!first_time_thru) {
+    else {// (!first_time_thru) 
       ret += curr_transition + " "  ;
       ret += a_word + " " + verbfinder(0, "") ;
       ret += " " + b_word ;
