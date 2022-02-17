@@ -60,6 +60,10 @@ public class storybuilder {
         ◆ the return type (if necessary)
         ◆ one or more parameters "
   */
+  
+  // \name "buildmeastory"
+  // \params Scanner "input", String "a_word", String "b_word"
+  // \returns String - a single sentence in the story
   public String buildmeastory(Scanner input, String a_word, String b_word) {
     
     String ret = "" ;
@@ -83,6 +87,8 @@ public class storybuilder {
 
     } 
     // TODO: this throws an index out of bounds exception. deal with it!
+    //  this shouldn't throw an error bc we already check whether the word is 
+    //    empty or not...
     else if (a_word.substring(0, 1).equals(b_word.substring(0, 1))) {
       ret += a_word + " " ;
       ret += verbfinder(1, a_word.substring(0, 1)) + " ";
@@ -161,15 +167,16 @@ public class storybuilder {
         "The data abstraction must make the program easier to develop (alternatives would
       be more complex) or easier to maintain (future changes to the size of the list would
       otherwise require significant modifications to the program code)."
-        // array list is useful here, because i don't have to pre-declare how many 
-        //  verbs I want to add to my "little dictionary." I can simply add. having a seperate
-        //  variable to store size adds about 3 lines of code and makes it more confusing when I
-        //  get the size the array later. furthermore, failing to update that variable when I add
-        // or remove from my list causes errors.
     */
+
+    // array list is useful here, because I don't have to pre-declare how many 
+    //  verbs I want to add to my "little dictionary." I can simply add. having a seperate
+    //  variable to store size adds about 3 lines of code and makes it more confusing when I
+    //  get the size the array later. furthermore, failing to update that variable when I add
+    // or remove from my list causes errors.
     ArrayList<String> return_verb_ = new ArrayList<String>() ;
 
-    // TODO - add verbs that start with every letter in the alphabet!
+    // TODO - add verbs that start with every letter in the alphabet! // at "g"
     //VERBS
     return_verb_.add("went to") ;
     return_verb_.add("did a") ;
@@ -198,6 +205,8 @@ public class storybuilder {
     return_verb_.add("sang with") ;
     return_verb_.add("yawned into the face of") ;
     return_verb_.add("hitchhiked to") ;
+    return_verb_.add("bounced off") ;
+    return_verb_.add("etched a") ;
     // Thanks to my younger sister for her innovative verbs. I could only think of 10 on my own :)
 
     // TODO - get this part to work!
