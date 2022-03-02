@@ -96,9 +96,7 @@ public class storybuilder {
       first_time_thru = false ;
 
     } 
-    // TODO: this throws an index out of bounds exception. deal with it!
-    //  this shouldn't throw an error bc we already check whether the word is 
-    //    empty or not...
+
     // alliterating case
     else if (a_word.substring(0, 1).equals(b_word.substring(0, 1))) {
       ret += a_word + " " ;
@@ -158,7 +156,10 @@ public class storybuilder {
     return ret ;
   }
   
-  // \param which says whether you want alphabetized (1) or not (0)
+  // TODO: GET RID OF! the "which" param
+  // can take start and if start == -1, then we can decide not to alliterate
+  
+  // \param which says whether you want alliterating (1) or not (0) - 
   // \param start says the start letter
   public String verbfinder(int which, String start) {
    
@@ -178,7 +179,6 @@ public class storybuilder {
     // or remove from my list causes errors.
     ArrayList<String> return_verb_ = new ArrayList<String>() ;
 
-    // TODO - add verbs that start with every letter in the alphabet! // at "i"
     //VERBS
     return_verb_.add("went to") ;
     return_verb_.add("did a") ;
@@ -399,5 +399,6 @@ public class storybuilder {
       endStory("fish") ;
     }
   }
-
 }
+
+// line 404 :)
