@@ -89,7 +89,7 @@ public class storybuilder {
     // first time thru case
     else if(first_time_thru) {
       ret += a_word + " " ;
-      ret += verbfinder(0, "")  + " " ;
+      ret += verbfinder(false, "")  + " " ;
       ret += b_word + " " ;
       ret += locationfinder() + ".\n" ;
 
@@ -100,16 +100,16 @@ public class storybuilder {
     // alliterating case
     else if (a_word.substring(0, 1).equals(b_word.substring(0, 1))) {
       ret += a_word + " " ;
-      ret += verbfinder(1, a_word.substring(0, 1)) + " ";
+      ret += verbfinder(true, a_word.substring(0, 1)) + " ";
       ret += b_word + " " ;
       ret += locationfinder() ;
 
       first_time_thru = false ;
     }
-    // regular path
-    else {// (!first_time_thru) 
+    // regular/default path
+    else {// (! first_time_thru) 
       ret += curr_transition + " "  ;
-      ret += a_word + " " + verbfinder(0, "") ;
+      ret += a_word + " " + verbfinder(false, "") ;
       ret += " " + b_word ;
       ret += " " + locationfinder() + ".\n" ;
     }
@@ -156,12 +156,9 @@ public class storybuilder {
     return ret ;
   }
   
-  // TODO: GET RID OF! the "which" param
-  // can take start and if start == -1, then we can decide not to alliterate
-  
-  // \param which says whether you want alliterating (1) or not (0) - 
-  // \param start says the start letter
-  public String verbfinder(int which, String start) {
+  // \param boolean isAlliterating defines whether or not returned verb will alliterate
+  // \param String start says the start letter.
+  public String verbfinder(Boolean isAlliterating, String start) {
    
     String ret = "" ;
     int random = (int)(Math.random()*100);
@@ -227,14 +224,14 @@ public class storybuilder {
 
     // Thanks to my younger sister for her innovative verbs. I could only think of 10 on my own :)
 
-    // aliteration (or, no alliteration) logic!
-
-    if (which == 0) {
+    // selection and sorting through a sequence using iteration
+    if (!isAlliterating) {
       ret += return_verb_.get((int)(random % return_verb_.size())) ;
     }
-    else { // if (which == 1), we want to alliterate!
+    else { // if (isAlliterating), we want to alliterate!
       ArrayList<String> alliterating = new ArrayList<String>() ;
       
+      //ITERATION WITHIN FUNCTION!
       // find && store the "alliterating" verbs in a new array. 
       for (int i = 0; i < return_verb_.size(); i++) {
         if (return_verb_.get(i).substring(0, 1).equals(start)) {
