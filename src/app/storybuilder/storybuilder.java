@@ -102,7 +102,7 @@ public class storybuilder {
       ret += a_word + " " ;
       ret += verbfinder(true, a_word.substring(0, 1)) + " ";
       ret += b_word + " " ;
-      ret += locationfinder() ;
+      ret += locationfinder()  + ".\n" ;
 
       first_time_thru = false ;
     }
