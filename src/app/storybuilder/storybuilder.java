@@ -118,7 +118,7 @@ public class storybuilder {
       System.out.println("You have entered the secret lair!");
       System.out.println("You must answer the three passwords correctly!\n\n") ;
       
-      System.out.println("1) print fibonacci's first 7 (from 0); seperate by single spaces: ") ;
+      System.out.println("1) print fibonacci's first 7 (from 0); separate by single spaces: ") ;
       String levelone = input.nextLine() ;
       if (levelone.equals("0 1 1 2 3 5 8 13") || levelone.equals("0 1 1 2 3 5 8 13 ")) {
         System.out.println("Congrats; you've passed level 1") ;
@@ -158,7 +158,7 @@ public class storybuilder {
   
   // \param boolean isAlliterating defines whether or not returned verb will alliterate
   // \param String start says the start letter.
-  public String verbfinder(Boolean isAlliterating, String start) {
+  public String verbfinder(boolean isAlliterating, String start) {
    
     String ret = "" ;
     int random = (int)(Math.random()*100);
@@ -170,9 +170,9 @@ public class storybuilder {
     */
 
     // array list is useful here, because I don't have to pre-declare how many 
-    //  verbs I want to add to my "little dictionary." I can simply add. having a seperate
+    //  verbs I want to add to my "little dictionary." I can simply add. having a separate
     //  variable to store size adds about 3 lines of code and makes it more confusing when I
-    //  get the size the array later. furthermore, failing to update that variable when I add
+    //  get the size of the array later. furthermore, failing to update that variable when I add
     // or remove from my list causes errors.
     ArrayList<String> return_verb_ = new ArrayList<String>() ;
 
