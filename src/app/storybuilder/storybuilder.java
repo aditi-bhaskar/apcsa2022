@@ -67,6 +67,7 @@ public class storybuilder {
   public String buildmeastory(Scanner input, String a_word, String b_word) {
     
     String ret = "" ;
+    curr_transition = transitionfinder() ;
     /* "An algorithm that includes sequencing, selection, and iteration that is in the
           body of the selected procedure "
     */
@@ -99,6 +100,7 @@ public class storybuilder {
 
     // alliterating case
     else if (a_word.substring(0, 1).equals(b_word.substring(0, 1))) {
+      ret += curr_transition + " "  ;
       ret += a_word + " " ;
       ret += verbfinder(true, a_word.substring(0, 1)) + " ";
       ret += b_word + " " ;
