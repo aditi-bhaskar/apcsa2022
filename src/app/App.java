@@ -16,9 +16,9 @@ public class App {
             /* "instructions for input from... the user (including user actions that trigger events)"
             */
             
-            System.out.println("Which game do you want to play? (enter the number)") ;
+            System.out.println("Play or Quit? (enter the number)") ;
             System.out.println("\t 0 - Quit") ;
-            System.out.println("\t 1 - StoryBuilder") ;
+            System.out.println("\t 1 - Play StoryBuilder") ;
 
             game = s.nextInt() ;
             while (game < 0 && game > 1) {

@@ -25,9 +25,11 @@ public class storybuilder {
     System.out.println("================================= "
                         + " \nenter 2 nouns [hit 'enter' between the two]" 
                         + " and a sentence will appear!"
-                        + " \n keep writing more nouns and the story will grow!"
+                        + " \nkeep writing more nouns and the story will grow!"
+                        + " \nif you enter two nouns that start with the same letter,"
+                        + " the verb output will alliterate"
                         + " \nthe game will magically end when"
-                        + " certain conditions are met..."
+                        + " you type \"object\" and \"class\"..."
                         + " \nhave fun!!!") ;
 
     System.out.print("\n ||||||||||||| \nOnce upon a time... \n\n") ;
@@ -75,14 +77,12 @@ public class storybuilder {
 
     if(a_word.equals("") || b_word.equals("")) {
       System.out.println("please enter 2 nouns") ;
-      a_word = input.nextLine() ;
-      b_word = input.nextLine() ;
     }
-    
-    if (a_word == "object" && b_word == "class") {
-      ret += "An object is an instance of a class" + ".\n";
-      first_time_thru = false ;
-
+    else if (a_word.equals("object") && b_word.equals("class")) {
+      ret += "An object is an instance of a class."  ;
+      ret += "\n";
+      ret += "The End!" ;
+      isDone = true ;
     } 
     // first time thru case
     else if(first_time_thru) {
@@ -112,45 +112,6 @@ public class storybuilder {
       ret += " " + locationfinder() + ".\n" ;
     }
     
-    if (a_word.equals("secret") || a_word.equals("42") || a_word.equals("treasure")) {
-      System.out.println("You have entered the secret lair!");
-      System.out.println("You must answer the three passwords correctly!\n\n") ;
-      
-      System.out.println("1) print fibonacci's first 7 (from 0); separate by single spaces: ") ;
-      String levelone = input.nextLine() ;
-      if (levelone.equals("0 1 1 2 3 5 8 13") || levelone.equals("0 1 1 2 3 5 8 13 ")) {
-        System.out.println("Congrats; you've passed level 1") ;
-        
-        System.out.println("2) what type of relation are these two primes? 7 and 11") ;
-        String leveltwo = input.nextLine() ;
-        if (leveltwo.equals("cousin primes") || leveltwo.equals("cousin")) {
-          System.out.println("Congrats; you've passed level 2") ;
-          
-          System.out.println("3) integer multiple of 3; don't type in 0 or 1 and try to be cool by using negatives") ;
-            int treasurethree = input.nextInt() ;
-            if(treasurethree%3 == 0) {
-              System.out.println("Congrats; you've passed level 3.\nyou are in the next...") ;
-              treasureThree(treasurethree);
-            }
-            else {
-              endStory("treasure", 3) ;
-            }
-        }
-        else {
-          endStory("treasure", 2) ;
-        }
-
-      } else {
-        endStory("treasure", 1) ;
-      }
-    }
-    
-    if (a_word.length() >= 5) {
-      if (a_word.substring(3, 4).equals("c") || a_word.length() == 7 || a_word.contains("q")) {
-        endStory("regular") ;
-      }
-    }
-      
     return ret ;
   }
   
@@ -314,85 +275,4 @@ public class storybuilder {
 
   }
 
-  // function overloading - pass in different parameters...
-  public void endStory(String which) {
-    switch (which) {
-      case "regular":
-        System.out.println("\nThe End!") ;
-        break ;
-      case "treasure" :
-        System.out.println("\nYour story - your quest for the ultimate question - has ended") ;
-        break ;
-      case "fish" :
-        System.out.println("\n\"So long and thanks for all the fish!\" ~Douglas Adams") ;
-      default :
-        System.out.println("\n...And so I graciously ended the story") ;
-        break ;  
-    }
-    System.out.println("\n|||||||||||||||||||||||||||||||||||||||||||||||\n") ;
-    isDone = true ;
-  }
-
-  public void endStory(String which, int level) {
-    switch (which) {
-      case "regular":
-        System.out.println("\nThe End!") ;
-        break ;
-      case "treasure":
-        switch (level) {
-          case 1: 
-            System.out.println("\nYou have failed level 1; good try") ;
-            break ;
-          case 2:
-            System.out.println("\nYou have failed level 2; good attempt") ;
-            break ;
-          case 3:
-            System.out.println("\nYou have failed level 3; good game") ;
-            break ;
-          default:
-            System.out.println("\ngood try") ;
-            break ;
-        }
-        System.out.println("\nYour story - your quest for the ultimate question - has ended") ;
-        break ;
-      default:
-        System.out.println("\n...And so I graciously end the story") ;
-        break ;
-    }
-    System.out.println("\n|||||||||||||||||||||||||||||||||||||||||||||||\n") ;
-    isDone = true ;
-  }
-
-  public void treasureThree(int input) {
-    System.out.println("\n|||||||||||||||||||||||||||||||||||||||||||||||\n") ;
-    if (input % 2 == 0) { // multiple of three ; even
-      // Thanks to ducks for being such interesting creatures.
-      System.out.println("Here are some duck jokes and facts!"+
-                          "\nAnatidaephobia: The fear that, somewhere, somehow, there is a duck"+
-                          " watching you\nIf your beak hurts, call the ducktor!\nIf a duck can't"+
-                          " pay for all its purchases, put it on its bill!") ;
-      endStory("bleh") ;
-    } 
-    else { // multiple of three ; odd
-      // Thanks to Douglas Adams for writing the Hitchhikers' series, because it's great.
-      System.out.println("\n\"What do you get if you multiply six by nine?\"" +
-                          "\n\"Six by nine. Forty two.\""+
-                          " \n\"That's it. That's all there is.\""+
-                          " \n\"I always thought something was fundamentally wrong with the universe\"") ;
-      System.out.println("\n\"There is an art, or, rather, a knack to flying." + 
-                          " The knack lies in learning how to throw yourself at the ground and miss." +
-                          " Pick a nice day and try it." +
-                          " All it requires is simply the ability to throw yourself forward with all" +
-                          " your weight, and the willingness not to mind that it's going to hurt." +
-                          " That is, it's going to hurt if you fail to miss the ground." + 
-                          " Most people fall to miss the ground, and if they are really trying properly," +
-                          " the likelihood is that they will fail to miss it fairly hard." +
-                          " Clearly, it is the second part, the missing, which presents the difficulties." + 
-                          " ... Waft higher and higher. Try a few swoops, gentle ones at first, then" + 
-                          " drift above the treetops breathing regularly. DO NOT WAVE AT ANYBODY.\" ") ;
-      endStory("fish") ;
-    }
-  }
 }
-
-// line 404 :)
