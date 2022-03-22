@@ -243,6 +243,8 @@ public class storybuilder {
     // utilize the .size() attribute of the ArrayList class
     if (selected_verbs.size() > 0){
       ret += selected_verbs.get((int)(Math.random() * (selected_verbs.size()))) ;
+    } else { // no verbs in selected_verbs
+      ret += return_verb_.get((int)(Math.random() * (return_verb_.size()))) ;
     }
 
     //finally, return the "magic" verb
