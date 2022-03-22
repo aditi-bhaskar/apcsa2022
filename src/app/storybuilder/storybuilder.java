@@ -68,9 +68,6 @@ public class storybuilder {
     
     String ret = "" ;
     curr_transition = transitionfinder() ;
-    /* "An algorithm that includes sequencing, selection, and iteration that is in the
-          body of the selected procedure "
-    */
 
     /* Instructions for output (tactile, audible, visual, or textual) based on input and
         program functionality
@@ -97,7 +94,6 @@ public class storybuilder {
       first_time_thru = false ;
 
     } 
-
     // alliterating case
     else if (a_word.substring(0, 1).equals(b_word.substring(0, 1))) {
       ret += curr_transition + " "  ;
@@ -226,28 +222,27 @@ public class storybuilder {
 
     // Thanks to my younger sister for her innovative verbs. I could only think of 10 on my own :)
 
-    // selection and sorting through a sequence using iteration
-    if (!isAlliterating) {
-      ret += return_verb_.get((int)(random % return_verb_.size())) ;
-    }
-    else { // if (isAlliterating), we want to alliterate!
-      ArrayList<String> alliterating = new ArrayList<String>() ;
-      
-      //ITERATION WITHIN FUNCTION!
-      // find && store the "alliterating" verbs in a new array. 
-      for (int i = 0; i < return_verb_.size(); i++) {
+    ArrayList<String> selected_verbs = new ArrayList<String>() ;
+
+    //ITERATION WITHIN FUNCTION!
+    // find && store the "returnable" verbs in a new array. 
+    for (int i = 0; i < return_verb_.size(); i++) {
+      if (isAlliterating) { // alliterating case
         if (return_verb_.get(i).substring(0, 1).equals(start)) {
-          alliterating.add(return_verb_.get(i)) ;
+          //selection and appending
+          selected_verbs.add(return_verb_.get(i)) ;
         }
       }
-
-      // find a random alliterating verb (in the case there were multiple)
-      if (alliterating.size() == 0) { // there were NO alliterating verbs
-        ret += return_verb_.get((int)(random % return_verb_.size())) ;
-      } 
-      else { // there WERE some alliterating verbs
-        ret += alliterating.get((int)(random % alliterating.size())) ;
+      else { // not alliterating case
+        // adding all the verbs
+        selected_verbs.add(return_verb_.get(i)) ;
       }
+    }
+
+    // selecting a random verb
+    // utilize the .size() attribute of the ArrayList class
+    if (selected_verbs.size() > 0){
+      ret += selected_verbs.get((int)(Math.random() * (selected_verbs.size()))) ;
     }
 
     //finally, return the "magic" verb
