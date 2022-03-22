@@ -170,7 +170,7 @@ public class storybuilder {
     // array list is useful here, because I don't have to pre-declare how many 
     //  verbs I want to add to my "little dictionary." I can simply add. having a separate
     //  variable to store size adds about 3 lines of code and makes it more confusing when I
-    //  get the size of the array later. furthermore, failing to update that variable when I add
+    //  modify the size of the array later. furthermore, failing to update that variable when I add
     // or remove from my list causes errors.
     ArrayList<String> return_verb_ = new ArrayList<String>() ;
 
@@ -219,8 +219,6 @@ public class storybuilder {
     return_verb_.add("washed their car with") ;
     return_verb_.add("x'ed out the name of") ;
     return_verb_.add("zzzz'ed") ;
-
-    // Thanks to my younger sister for her innovative verbs. I could only think of 10 on my own :)
 
     ArrayList<String> selected_verbs = new ArrayList<String>() ;
 
