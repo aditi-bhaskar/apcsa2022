@@ -29,17 +29,23 @@ public class App {
                 game = s.nextInt() ;
             }
 
+            // to consume remaining line, since nextInt() was prev method called 
+            //  (in App.java) and it causes an error...
+            s.nextLine() ;
+
             if (game == 0) { // QUIT
                 System.out.println("QUITTING?");
                 System.out.println("You have successfully quit."); 
                 return ;
             } 
             if(game == 1) { // STORYBUILDER
-                System.out.println("StoryBuilder Game");
-                storybuilder story = new storybuilder(s);
+                System.out.println("Storybuilder Game");
+                storybuilder story = new storybuilder();
+                story.createMyStory(s);
                 return ;
             }  
         }
+
         s.close() ;
         
     }

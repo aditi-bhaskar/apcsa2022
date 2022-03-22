@@ -10,21 +10,20 @@ import java.util.Scanner;
 // edit it,
 // and make it all the more nonsensical.
 // So here I write a class to build you your own nonsensical stories
-// and hopefully you'll continue the story in your free time!
+// and hopefully you'll continue your stories in your free time!
 
 public class storybuilder {
   
-  boolean isDone ;
-  
-  String curr_transition ;
-  boolean first_time_thru ;
+  private boolean isDone_ ;
+  private boolean firstTimeThru_ ;
 
-  // declaring all sets of words as global
-  ArrayList<String> verbs_ ;
-  ArrayList<String> locations_ ;
-  ArrayList<String> transitions_ ;
+  // declaring all words lists as static member variables
+  private static ArrayList<String> verbs_ ;
+  private static ArrayList<String> locations_ ;
+  private static ArrayList<String> transitions_ ;
 
-  public storybuilder(Scanner input) {
+  //constructor
+  public storybuilder() {
     
     System.out.println("==========HOW TO PLAY==========") ;
     System.out.println("================================= "
@@ -39,24 +38,8 @@ public class storybuilder {
 
     System.out.print("\n ||||||||||||| \nOnce upon a time... \n\n") ;
     
-    // setting globals
-    isDone = false;
-    curr_transition = "" ;
-    first_time_thru = true ;
-
-    String first_input ;
-    String second_input ;
-    
-    // to consume remaining line, since nextInt() was prev method called 
-    //  (in App.java) and it causes an error...
-    input.nextLine() ;
-
+    /////////////////////////////
     // FILLING UP MY ARRAYLISTS -
-    // array list is useful here, because I don't have to pre-declare how many 
-    // verbs I want to add to my "little dictionary." I can simply add. having a separate
-    // variable to store size adds about 3 lines of code and makes it more confusing when I
-    // modify the size of the array later. furthermore, failing to update that variable when I add
-    // or remove from my list causes errors.
     
     //VERBS
     verbs_ = new ArrayList<String>() ;
@@ -140,26 +123,37 @@ public class storybuilder {
 
     //TRANSITIONS
     transitions_ = new ArrayList<String>() ;
-    transitions_.add("then") ;
-    transitions_.add("on the other hand") ;
-    transitions_.add("therefore") ;
-    transitions_.add("and then") ;
-    transitions_.add("meanwhile") ;
-    transitions_.add("yesterday") ;
-    transitions_.add("later") ;
-    transitions_.add("so") ;
-    transitions_.add("back in the day") ;
-    transitions_.add("last week") ;
-
+    transitions_.add("Then,") ;
+    transitions_.add("On the other hand,") ;
+    transitions_.add("Therefore,") ;
+    transitions_.add("And then,") ;
+    transitions_.add("Meanwhile,") ;
+    transitions_.add("Yesterday,") ;
+    transitions_.add("Later,") ;
+    transitions_.add("So,") ;
+    transitions_.add("Back in the day,") ;
+    transitions_.add("Last week,") ;
 
     // FINALLY, actually getting to the program's most 
-    // important part -  building a story!!
+    // exciting part -  building a story!!
     /* "Calls to your student-developed procedure" */
-    while (!isDone) {
+
+    // setting member variables
+    isDone_ = false;
+    firstTimeThru_ = true ;
+
+  }
+
+  // call this method to start your story!
+  public void createMyStory(Scanner input) {
+    String first_input ;
+    String second_input ;
+
+    while (!isDone_) {
       first_input = input.nextLine() ;
       second_input = input.nextLine() ;
 
-      System.out.println(buildmeastory(input, first_input, second_input)); 
+      System.out.println(buildMeASentence(input, first_input, second_input)); 
     }
 
   }
@@ -171,54 +165,51 @@ public class storybuilder {
         ◆ one or more parameters "
   */
   
-  // \name "buildmeastory"
+  // \name "buildmeasentence"
   // \params Scanner "input", String "a_word", String "b_word"
   // \returns String - a single sentence in the story
-  public String buildmeastory(Scanner input, String a_word, String b_word) {
+  public String buildMeASentence(Scanner input, String a_word, String b_word) {
     // in turn, buildmeastory is called from the constructor
     
     String ret = "" ;
-    curr_transition = transitionfinder() ;
 
     /* Instructions for output (tactile, audible, visual, or textual) based on input and
         program functionality
     */
 
-    if(a_word.equals("") || b_word.equals("")) {
-      System.out.println("please enter 2 nouns") ;
+    // add a transition if it isn't the first time thru
+    if (!firstTimeThru_) {
+      ret += transitionFinder() + " " ;
+    } else {
+      firstTimeThru_ = false ;
     }
-    else if (a_word.equals("object") && b_word.equals("class")) {
-      ret += "An object is an instance of a class."  ;
-      ret += "\n";
-      ret += "The End!" ;
-      isDone = true ;
-    } 
-    // first time thru case
-    else if(first_time_thru) {
-      ret += a_word + " " ;
-      ret += verbfinder(false, "")  + " " ;
-      ret += b_word + " " ;
-      ret += locationfinder() + ".\n" ;
 
-      first_time_thru = false ;
-
+    // case where nothing is entered
+    if(a_word.equals("") || b_word.equals("")) {
+      ret = "please enter 2 nouns" ;
+    }
+    //exit case
+    else if (a_word.toLowerCase().equals("object") 
+            && b_word.toLowerCase().equals("class")) {
+      ret = "An " + a_word ;
+      ret += " is an instance of a " + b_word ;
+      ret += ".\n";
+      ret += "The End!\n" ;
+      isDone_ = true ;
     } 
     // alliterating case
-    else if (a_word.substring(0, 1).equals(b_word.substring(0, 1))) {
-      ret += curr_transition + " "  ;
+    else if (a_word.toLowerCase().substring(0, 1).equals(b_word.toLowerCase().substring(0, 1))) {
       ret += a_word + " " ;
-      ret += verbfinder(true, a_word.substring(0, 1)) + " ";
+      ret += verbFinder(true, a_word.substring(0, 1).toLowerCase()) + " ";
       ret += b_word + " " ;
-      ret += locationfinder()  + ".\n" ;
-
-      first_time_thru = false ;
+      ret += locationFinder()  + ".\n" ;
     }
     // regular/default path
-    else {// (! first_time_thru) 
-      ret += curr_transition + " "  ;
-      ret += a_word + " " + verbfinder(false, "") ;
-      ret += " " + b_word ;
-      ret += " " + locationfinder() + ".\n" ;
+    else { 
+      ret += a_word + " " ;
+      ret += verbFinder(false, "") + " " ;
+      ret += b_word + " " ;
+      ret += locationFinder() + ".\n" ;
     }
     
     return ret ;
@@ -226,7 +217,7 @@ public class storybuilder {
   
   // \param boolean isAlliterating defines whether or not returned verb will alliterate
   // \param String start says the start letter.
-  public String verbfinder(boolean isAlliterating, String start) {
+  public String verbFinder(boolean isAlliterating, String start) {
    
     String ret = "" ;
     
@@ -236,9 +227,9 @@ public class storybuilder {
       otherwise require significant modifications to the program code)."
     */
 
-    // the ArrayList “verbs_” was declared global, so any time when “verbs_” is
+    // the ArrayList “verbs_” is a member variable, so any time when “verbs_” is
     // used in this method, it’s referring to that ArrayList.
-    ArrayList<String> selected_verbs = new ArrayList<String>() ;
+    ArrayList<String> selectedVerbs = new ArrayList<String>() ;
 
     //ITERATION WITHIN FUNCTION!
     // find && store the "returnable" verbs in a new array. 
@@ -246,20 +237,21 @@ public class storybuilder {
       if (isAlliterating) { // alliterating case
         if (verbs_.get(i).substring(0, 1).equals(start)) {
           //selection and appending
-          selected_verbs.add(verbs_.get(i)) ;
+          selectedVerbs.add(verbs_.get(i)) ;
         }
       }
       else { // not alliterating case
         // adding all the verbs
-        selected_verbs.add(verbs_.get(i)) ;
+        selectedVerbs.add(verbs_.get(i)) ;
       }
     }
 
     // selecting a random verb
     // utilize the .size() attribute of the ArrayList class
-    if (selected_verbs.size() > 0){
-      ret += selected_verbs.get((int)(Math.random() * (selected_verbs.size()))) ;
+    if (selectedVerbs.size() > 0){
+      ret += selectedVerbs.get((int)(Math.random() * (selectedVerbs.size()))) ;
     } else { // no verbs in selected_verbs
+      // eg. the user enters "alliterating" spaces, numbers, or special characters
       ret += verbs_.get((int)(Math.random() * (verbs_.size()))) ;
     }
 
@@ -267,13 +259,13 @@ public class storybuilder {
     return ret ;
   }
 
-  public String locationfinder() {
+  public String locationFinder() {
     
     //return the random location
     return locations_.get((int)(Math.random() * locations_.size())) ;
   }
 
-  public String transitionfinder() {
+  public String transitionFinder() {
   
     //return the random transition phrase
     return transitions_.get((int)(Math.random() * transitions_.size())) ;
