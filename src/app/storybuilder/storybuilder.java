@@ -55,7 +55,7 @@ public class storybuilder {
     verbs_.add("died because of") ;
     verbs_.add("gave birth to") ;
     verbs_.add("broke a") ;
-    verbs_.add("drank with") ;
+    verbs_.add("drank orange juice with") ;
     verbs_.add("wrote on") ;
     verbs_.add("played with") ;
     verbs_.add("slept on") ;
@@ -94,7 +94,7 @@ public class storybuilder {
     locations_ = new ArrayList<String>() ;
     locations_.add("at the beach") ;
     locations_.add("at school") ;
-    locations_.add(", then fell into a coma") ;
+    locations_.add("then fell into a coma") ;
     locations_.add("for five minutes") ;
     locations_.add("with an amiable disposition") ;
     locations_.add("in the park") ;
@@ -107,7 +107,7 @@ public class storybuilder {
     locations_.add("2 hours ago") ;
     locations_.add("for 60 extraordinary seconds") ;
     locations_.add("before they were caught by the police") ;
-    locations_.add(",then bought a jacket") ;
+    locations_.add("then bought a jacket") ;
     locations_.add("on a couch") ;
     locations_.add("in the mountains") ;
     locations_.add("near a river") ;
