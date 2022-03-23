@@ -171,7 +171,7 @@ public class storybuilder {
   // \params Scanner "input", String "a_word", String "b_word"
   // \returns String - a single sentence in the story
   private String buildMeASentence(Scanner input, String a_word, String b_word) {
-    // in turn, buildmeasentence is called from the method createmystory, 
+    // in turn, buildMeASentence is called from the method createMyStory, 
     // which is called when the object calls it
     
     String ret = "" ;
