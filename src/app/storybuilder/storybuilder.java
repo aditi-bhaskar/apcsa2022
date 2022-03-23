@@ -87,12 +87,14 @@ public class storybuilder {
     verbs_.add("washed their car with") ;
     verbs_.add("x'ed out the name of") ;
     verbs_.add("zzzz'ed") ;
+    verbs_.add("grew plants in a garden belonging to") ;
+    verbs_.add("gouged mold out of a computer belonging to") ;
 
     //LOCATIONS
     locations_ = new ArrayList<String>() ;
     locations_.add("at the beach") ;
     locations_.add("at school") ;
-    locations_.add("in a coma") ;
+    locations_.add(", then fell into a coma") ;
     locations_.add("for five minutes") ;
     locations_.add("with an amiable disposition") ;
     locations_.add("in the park") ;
@@ -105,7 +107,7 @@ public class storybuilder {
     locations_.add("2 hours ago") ;
     locations_.add("for 60 extraordinary seconds") ;
     locations_.add("before they were caught by the police") ;
-    locations_.add("then bought a jacket") ;
+    locations_.add(",then bought a jacket") ;
     locations_.add("on a couch") ;
     locations_.add("in the mountains") ;
     locations_.add("near a river") ;
@@ -186,12 +188,12 @@ public class storybuilder {
 
     // case where nothing is entered
     if(a_word.equals("") || b_word.equals("")) {
-      ret = "please enter 2 nouns" ;
+      ret = "\nplease enter 2 nouns" ;
     }
     //exit case
     else if (a_word.toLowerCase().equals("object") 
             && b_word.toLowerCase().equals("class")) {
-      ret = "An " + a_word ;
+      ret = "\nAn " + a_word ;
       ret += " is an instance of a " + b_word ;
       ret += ".\n";
       ret += "The End!\n" ;
@@ -229,6 +231,7 @@ public class storybuilder {
 
     // the ArrayList “verbs_” is a member variable, so any time when “verbs_” is
     // used in this method, it’s referring to that ArrayList.
+
     ArrayList<String> selectedVerbs = new ArrayList<String>() ;
 
     //ITERATION WITHIN FUNCTION!
@@ -250,7 +253,7 @@ public class storybuilder {
     // utilize the .size() attribute of the ArrayList class
     if (selectedVerbs.size() > 0){
       ret += selectedVerbs.get((int)(Math.random() * (selectedVerbs.size()))) ;
-    } else { // no verbs in selected_verbs
+    } else { // no verbs in selectedVerbs
       // eg. the user enters "alliterating" spaces, numbers, or special characters
       ret += verbs_.get((int)(Math.random() * (verbs_.size()))) ;
     }
