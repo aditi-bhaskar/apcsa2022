@@ -170,8 +170,9 @@ public class storybuilder {
   // \name "buildmeasentence"
   // \params Scanner "input", String "a_word", String "b_word"
   // \returns String - a single sentence in the story
-  public String buildMeASentence(Scanner input, String a_word, String b_word) {
-    // in turn, buildmeastory is called from the constructor
+  private String buildMeASentence(Scanner input, String a_word, String b_word) {
+    // in turn, buildmeasentence is called from the method createmystory, 
+    // which is called when the object calls it
     
     String ret = "" ;
 
@@ -219,7 +220,7 @@ public class storybuilder {
   
   // \param boolean isAlliterating defines whether or not returned verb will alliterate
   // \param String start says the start letter.
-  public String verbFinder(boolean isAlliterating, String start) {
+  private String verbFinder(boolean isAlliterating, String start) {
    
     String ret = "" ;
     
@@ -262,13 +263,13 @@ public class storybuilder {
     return ret ;
   }
 
-  public String locationFinder() {
+  private String locationFinder() {
     
     //return the random location
     return locations_.get((int)(Math.random() * locations_.size())) ;
   }
 
-  public String transitionFinder() {
+  private String transitionFinder() {
   
     //return the random transition phrase
     return transitions_.get((int)(Math.random() * transitions_.size())) ;
